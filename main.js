@@ -14,19 +14,21 @@ let mainWindow
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 1200, height: 300, minWidth: 600, minHeight: 150,
-				  titleBarStyle: 'hidden', // OSX only
-				  //frame: false // all platforms
-				 })
+    titleBarStyle: 'hidden', // OSX only
+    //frame: false // all platforms
+  })
 
   // and load the index.html of the app.
   /*
-  mainWindow.loadURL(url.format({
+  const url = url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
-  }))
+  });
   */
-  mainWindow.loadURL('https://subs.ai/home');
+  const url = 'https://subs.ai/home';
+  const options = {"extraHeaders" : "pragma: no-cache\n"};
+  mainWindow.loadURL(url, options);
 
   // Open the DevTools.
   //mainWindow.webContents.openDevTools()
