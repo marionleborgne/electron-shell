@@ -1,4 +1,6 @@
-const electron = require('electron')
+const electron = require('electron');
+const {session} = require('electron');
+
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
@@ -12,6 +14,8 @@ const url = require('url')
 let mainWindow
 
 function createWindow () {
+  const ses = session.fromPartition('persist:name');
+
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 1200, height: 300, minWidth: 600, minHeight: 150,
     titleBarStyle: 'hidden', // OSX only
@@ -27,8 +31,9 @@ function createWindow () {
   });
   */
   const url = 'https://subs.ai/home';
-  const options = {"extraHeaders" : "pragma: no-cache\n"};
-  mainWindow.loadURL(url, options);
+  const options = {}; //{"extraHeaders" : "pragma: no-cache\n"};
+
+  ses.clearCache(()=> mainWindow.loadURL(url, options));
 
   // Open the DevTools.
   //mainWindow.webContents.openDevTools()
