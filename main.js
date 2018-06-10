@@ -30,10 +30,14 @@ function createWindow () {
     slashes: true
   });
   */
-  const url = 'https://subs.ai/home';
-  const options = {}; //{"extraHeaders" : "pragma: no-cache\n"};
 
-  ses.clearCache(()=> mainWindow.loadURL(url, options));
+  const url = 'https://subs.ai/home';
+
+  // Failed attempt at clearing the cache
+  // const options = {"extraHeaders" : "pragma: no-cache\n"};
+  // ses.clearCache(()=> mainWindow.loadURL(url, options));
+
+  mainWindow.loadURL(url);
 
   // Open the DevTools.
   //mainWindow.webContents.openDevTools()
